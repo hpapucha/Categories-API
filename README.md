@@ -6,7 +6,6 @@
 We're going to create a todoApp during this Spring week. You'll continue to add functionality to your app as we learn more about Spring and its modules. 
 
 This will be a fairly open-ended lab. We want you to be able to think through the design decisions and understand the reason why you choose one thing over the other. There's just one main ground rule to follow: Make sure you only work with the technologies/tools we covered during the lesson.
-------
 
 ## Deliverables
 
