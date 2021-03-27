@@ -37,9 +37,13 @@ Today, you'll just set up your app using Spring Boot CLI, as we did in the lesso
 - Create a `/hello` endpoint that returns a `'Hello World!'` string.
 - Use Postman to test the API.
 
+#### COMMIT MESSAGE: Step 1 - COMPLETED
+
 ### Step 2 (Spring Profile)
 
 In the next step, you'll use Spring Profile to create a development-specific environment in your app. This is where all of your environment-specific configuration will go.
+
+#### COMMIT MESSAGE: Step 1 - COMPLETED
 
 ### Step 3 (Spring Data)
 
@@ -64,6 +68,8 @@ Let's test all the endpoints
 |PUT|/api/categories/{categoryId}|
 |DELETE|/api/categories/{categoryId}|
 
+#### COMMIT MESSAGE: Step 3A - COMPLETED
+
 #### 3(b)
 
 In the next step, you'll add the `Item` model and map it with `Category`.
@@ -85,6 +91,8 @@ In the next step, you'll add the `Item` model and map it with `Category`.
 |PUT|/api/categories/{categoryId}/items/{itemsId}|
 |DELETE|/api/categories/{categoryId}/items/{itemsId}|
 
+#### COMMIT MESSAGE: Step 3B - COMPLETED
+
 #### 3(c)
 In the next step, you'll add the `User` model and map it with `UserProfile`.
 - The `User` table should have at least three columns: `userName` and `emailAddress`, and`password`.
@@ -94,13 +102,14 @@ In the next step, you'll add the `User` model and map it with `UserProfile`.
 
 TEST: http://localhost:8080/auth/users/register
 
+#### COMMIT MESSAGE: Step 3C - COMPLETED
+
 ### Step 4 (Spring Security)
 
 You'll now add user authentication and authorization to your existing app, using JSON Web Tokens (JWT) to authenticate your requests. You already have a `User` model for security purposes.
 - Again, make sure to use only JWT for authentication.
 - Only login API endpoint will only return a JWT in response.
 - All other requests will use that token for authentication. 
-
 
 ### Functionality(endpoints)
 Endpoint | Functionality| Access
@@ -116,3 +125,5 @@ POST /api/categories/{categoryId}/items | Creates a new item in the given catego
 GET /api/categories/{categoryId}/items | List all item in the given category | PRIVATE
 PUT /api/categories/{categoryId}/items/{itemsId}| Updates a item in the given category | PRIVATE
 DELETE /api/categories/{categoryId}/items/{itemsId} | Deletes a item in the given category | PRIVATE
+
+#### COMMIT MESSAGE: Step 4 - COMPLETED
