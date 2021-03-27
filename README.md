@@ -9,7 +9,7 @@ This will be a fairly open-ended lab. We want you to be able to think through th
 
 ## Deliverables
 
-Collaborate and push your changes to a GitHub repo.
+Push your changes to a GitHub repo.
 
 You will maintain a `README` that will include the following:
 
@@ -20,7 +20,7 @@ You will maintain a `README` that will include the following:
 - Challenges you faced.
 - Which part you enjoyed working on the most.
 
-At the end of this lab, after testing is done, we will hear a **five-minute presentation** from each team. Each team will go through its `README`, talking through each point. Be prepared to answer some questions. 
+At the end of this lab, after testing is done, we will hear a **five-minute presentation** from each student. Each student will go through its `README`, talking through each point. Be prepared to answer some questions. 
 
 ----
 
