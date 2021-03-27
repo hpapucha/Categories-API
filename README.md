@@ -54,6 +54,16 @@ In this step, you'll only create a `Category` model.
 - The `Category` should have at least two fields: `name` and `description`.
 -  You'll create full CRUD endpoints for `Category` controller.
 
+Let's test all the endpoints
+
+| Request Type | URL|
+|--|--|
+| GET | /api/categories/ |
+|POST|/api/categories/|
+|GET|/api/categories/{categoryId}|
+|PUT|/api/categories/{categoryId}|
+|DELETE|/api/categories/{categoryId}|
+
 #### 3(b)
 
 In the next step, you'll add the `Item` model and map it with `Category`.
@@ -62,6 +72,19 @@ In the next step, you'll add the `Item` model and map it with `Category`.
 - The `Category` and `Item` tables should be mapped to each other.
 - You'll create full CRUD endpoints for `Item` controller.
 
+| Request Type | URL|
+|--|--|
+| GET | /api/categories/ |
+|POST|/api/categories/|
+|GET|/api/categories/{categoryId}|
+|PUT|/api/categories/{categoryId}|
+|DELETE|/api/categories/{categoryId}|
+|GET|/api/categories/{categoryId}/items|
+|POST|/api/categories/{categoryId}/items|
+|GET|/api/categories/{categoryId}/items/{itemsId}|
+|PUT|/api/categories/{categoryId}/items/{itemsId}|
+|DELETE|/api/categories/{categoryId}/items/{itemsId}|
+
 #### 3(c)
 In the next step, you'll add the `User` model and map it with `UserProfile`.
 - The `User` table should have at least three columns: `userName` and `emailAddress`, and`password`.
@@ -69,9 +92,27 @@ In the next step, you'll add the `User` model and map it with `UserProfile`.
 - The `User` and `UserProfile` tables should be mapped to each other (1:1).
 -  Under the UserController, you'll create register endpont and block all the other URLs
 
+TEST: http://localhost:8080/auth/users/register
+
 ### Step 4 (Spring Security)
 
 You'll now add user authentication and authorization to your existing app, using JSON Web Tokens (JWT) to authenticate your requests. You already have a `User` model for security purposes.
 - Again, make sure to use only JWT for authentication.
 - Only login API endpoint will only return a JWT in response.
 - All other requests will use that token for authentication. 
+
+
+### Functionality(endpoints)
+Endpoint | Functionality| Access
+------------ | ------------- | ------------- 
+POST /auth/users/register | Registers a user | PUBLIC
+POST /auth/users/login |Logs a user in | PUBLIC
+GET /api/categories | Lists all categories | PRIVATE
+GET /api/categories/{categoryId} | Gets a single category with the suppled id | PRIVATE
+POST /api/categories | Creates a new category | PRIVATE
+PUT /api/categories/{categoryId} | Updates a category with the suppled id | PRIVATE
+DELETE /api/categories/{categoryId} | Deletes a category with the suppled id | PRIVATE
+POST /api/categories/{categoryId}/items | Creates a new item in the given category | PRIVATE
+GET /api/categories/{categoryId}/items | List all item in the given category | PRIVATE
+PUT /api/categories/{categoryId}/items/{itemsId}| Updates a item in the given category | PRIVATE
+DELETE /api/categories/{categoryId}/items/{itemsId} | Deletes a item in the given category | PRIVATE
