@@ -39,11 +39,15 @@ Today, you'll just set up your app using Spring Boot CLI, as we did in the lesso
 
 #### COMMIT MESSAGE: Step 1 - COMPLETED
 
+----
+
 ### Step 2 (Spring Profile)
 
 In the next step, you'll use Spring Profile to create a development-specific environment in your app. This is where all of your environment-specific configuration will go.
 
-#### COMMIT MESSAGE: Step 1 - COMPLETED
+#### COMMIT MESSAGE: Step 2 - COMPLETED
+
+----
 
 ### Step 3 (Spring Data)
 
@@ -70,6 +74,8 @@ Let's test all the endpoints
 
 #### COMMIT MESSAGE: Step 3A - COMPLETED
 
+----
+
 #### 3(b)
 
 In the next step, you'll add the `Item` model and map it with `Category`.
@@ -93,6 +99,8 @@ In the next step, you'll add the `Item` model and map it with `Category`.
 
 #### COMMIT MESSAGE: Step 3B - COMPLETED
 
+----
+
 #### 3(c)
 In the next step, you'll add the `User` model and map it with `UserProfile`.
 - The `User` table should have at least three columns: `userName` and `emailAddress`, and`password`.
@@ -103,6 +111,8 @@ In the next step, you'll add the `User` model and map it with `UserProfile`.
 TEST: http://localhost:8080/auth/users/register
 
 #### COMMIT MESSAGE: Step 3C - COMPLETED
+
+----
 
 ### Step 4 (Spring Security)
 
