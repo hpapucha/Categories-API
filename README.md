@@ -93,9 +93,9 @@ In the next step, you'll add the `Item` model and map it with `Category`.
 |DELETE|/api/categories/{categoryId}|
 |GET|/api/categories/{categoryId}/items|
 |POST|/api/categories/{categoryId}/items|
-|GET|/api/categories/{categoryId}/items/{itemsId}|
-|PUT|/api/categories/{categoryId}/items/{itemsId}|
-|DELETE|/api/categories/{categoryId}/items/{itemsId}|
+|GET|/api/categories/{categoryId}/items/{itemId}|
+|PUT|/api/categories/{categoryId}/items/{itemId}|
+|DELETE|/api/categories/{categoryId}/items/{itemId}|
 
 #### COMMIT MESSAGE: Step 3B - COMPLETED
 
@@ -133,7 +133,7 @@ PUT /api/categories/{categoryId} | Updates a category with the suppled id | PRIV
 DELETE /api/categories/{categoryId} | Deletes a category with the suppled id | PRIVATE
 POST /api/categories/{categoryId}/items | Creates a new item in the given category | PRIVATE
 GET /api/categories/{categoryId}/items | List all item in the given category | PRIVATE
-PUT /api/categories/{categoryId}/items/{itemsId}| Updates a item in the given category | PRIVATE
-DELETE /api/categories/{categoryId}/items/{itemsId} | Deletes a item in the given category | PRIVATE
+PUT /api/categories/{categoryId}/items/{itemId}| Updates a item in the given category | PRIVATE
+DELETE /api/categories/{categoryId}/items/{itemId} | Deletes a item in the given category | PRIVATE
 
 #### COMMIT MESSAGE: Step 4 - COMPLETED
