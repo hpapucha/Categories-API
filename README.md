@@ -30,7 +30,7 @@ We'll build this back-end app incrementally.
 
 ### Step 1 (Spring Boot)
 
-Today, you'll just set up your app using Spring Boot CLI, as we did in the lesson earlier. 
+Today, you'll just set up your app using Spring Boot, as we did in the lesson earlier. 
 
 - Use Maven to download and build all of the dependencies.
 - Create a REST controller.
