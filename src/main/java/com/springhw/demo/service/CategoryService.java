@@ -113,7 +113,7 @@ public class CategoryService {
         if (category.isPresent()) {
             Optional<Item> item = itemRepository.findByCategoryId(categoryId).stream().filter(p -> p.getId().equals(itemId)).findFirst();
             if (item.isEmpty()) {
-                throw new InformationNotFoundException("recipe with id " + itemId + " not found");
+                throw new InformationNotFoundException("item with id " + itemId + " not found");
             } else {
                 return item.get();
             }
@@ -122,7 +122,7 @@ public class CategoryService {
         }
     }
 
-
+    //Update a single Item inside a single category
     public Item updateCategoryItem(Long categoryId, Long itemId, Item itemObject) {
         System.out.println("service calling updateCategoryItem ==>");
         try {
@@ -131,6 +131,18 @@ public class CategoryService {
             itemOne.setDescription(itemObject.getDescription());
             itemOne.setDueDate(itemObject.getDueDate());
             return itemRepository.save(itemOne);
+        } catch (NoSuchElementException e) {
+            throw new InformationNotFoundException("item or category not found");
+        }
+    }
+
+    //Delete a single item inside a single category
+
+    public void deleteCategoryItem(Long categoryId, Long itemId) {
+        System.out.println("service calling deleteCategoryItem ==>");
+        try {
+            Item item = (itemRepository.findByCategoryId(categoryId).stream().filter(p -> p.getId().equals(itemId)).findFirst()).get();
+            itemRepository.deleteById(item.getId());
         } catch (NoSuchElementException e) {
             throw new InformationNotFoundException("item or category not found");
         }

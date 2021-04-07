@@ -6,7 +6,11 @@ import com.springhw.demo.model.Item;
 import com.springhw.demo.repository.CategoryRepository;
 import com.springhw.demo.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -86,6 +90,7 @@ public class Controller {
         return categoryService.getCategoryItems(categoryId);
     }
 
+    //http://localhost:9092/api/categories/1/items/1
     //Get a single Item inside a single category
     @GetMapping("/categories/{categoryId}/items/{itemId}")
     public Item getSingleCategoryItem(@PathVariable Long categoryId, @PathVariable Long itemId){
@@ -94,11 +99,23 @@ public class Controller {
     }
 
     //Update a single item inside a single category
+    //http://localhost:9092/api/categories/1/items/1
     @PutMapping("/categories/{categoryId}/items/{itemId}")
     public Item updateCategoryItem(@PathVariable(value = "categoryId") Long categoryId, @PathVariable(value = "itemId") Long itemId, @RequestBody Item itemObject){
         System.out.println("calling updateCategoryItem ==>");
         return categoryService.updateCategoryItem(categoryId, itemId, itemObject);
     }
-    
+
+    //Delete a single item inside a single category (deleted id 3)
+    //http://localhost:9092/api/categories/1/items/3
+    @DeleteMapping("/categories/{categoryId}/items/{itemId}")
+    public ResponseEntity<HashMap> deleteCategoryItem(@PathVariable(value = "categoryId") Long categoryId, @PathVariable(value = "itemId") Long itemId) {
+        System.out.println("calling deleteCategoryItem ==>");
+        categoryService.deleteCategoryItem(categoryId, itemId);
+        HashMap responseMessage = new HashMap();
+        responseMessage.put("status", "item with id: " + itemId + " was successfully deleted.");
+        return new ResponseEntity<HashMap>(responseMessage, HttpStatus.OK);
+    }
+
 //end
 }
