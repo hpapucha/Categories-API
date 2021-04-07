@@ -62,7 +62,7 @@ public class Category {
                 "description='" + description + '\'' + '}';
     }
 
-    public List<Item> getRecipeList() { return itemList; }
+    public List<Item> getItemList() { return itemList; }
 
-    public void setRecipeList(List<Item> recipeList) { this.itemList = recipeList; }
+    public void setItemList(List<Item> itemList) { this.itemList = itemList; }
 }

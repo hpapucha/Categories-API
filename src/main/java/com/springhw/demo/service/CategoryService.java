@@ -100,12 +100,11 @@ public class CategoryService {
         System.out.println("service calling getCategoryItem ==>");
         Optional<Category> category = categoryRepository.findById(categoryId);
         if (category.isPresent()) {
-            return category.get().getRecipeList();
+            return category.get().getItemList();
         } else {
             throw new InformationNotFoundException("category with id " + categoryId + " not found");
         }
     }
-
 
 
 }

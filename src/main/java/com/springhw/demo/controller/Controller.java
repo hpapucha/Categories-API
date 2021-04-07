@@ -79,18 +79,12 @@ public class Controller {
     }
 
     // http://localhost:9092/api/categories/1/item
-    //Get Items inside item table
+    //Get All Items inside a single category
     @GetMapping("/categories/{categoryId}/item")
     public List<Item> getCategoryItem(@PathVariable Long categoryId){
         System.out.println("calling getCategoryItem ==>");
-        return null;
+        return categoryService.getCategoryItem(categoryId);
     }
 
 
-//    // http://localhost:PORT-NUMBER/api/categories/1/recipes
-//    @GetMapping("/categories/{categoryId}/recipes")
-//    public List<Recipe> getCategoryRecipes(@PathVariable Long categoryId){
-//        System.out.println("calling getCategoryRecipes ==>");
-//        return categoryService.getCategoryRecipes(categoryId);
-//    }
 }
