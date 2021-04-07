@@ -106,5 +106,21 @@ public class CategoryService {
         }
     }
 
+    //Get a single Item inside a single category
+    public Item getCategoryRecipe(Long categoryId, Long itemId) {
+        System.out.println("service calling getCategoryRecipe ==>");
+        Optional<Category> category = categoryRepository.findById(categoryId);
+        if (category.isPresent()) {
+            Optional<Item> item = itemRepository.findByCategoryId(categoryId).stream().filter(p -> p.getId().equals(itemId)).findFirst();
+            if (item.isEmpty()) {
+                throw new InformationNotFoundException("recipe with id " + itemId + " not found");
+            } else {
+                return item.get();
+            }
+        } else {
+            throw new InformationNotFoundException("category with id " + categoryId + " not found");
+        }
+    }
+
 
 }
