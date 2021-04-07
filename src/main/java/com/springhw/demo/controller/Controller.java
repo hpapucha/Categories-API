@@ -69,13 +69,28 @@ public class Controller {
         return categoryService.deleteCategory(categoryId);
     }
 
-    //ITEM
+    //Create Items inside Item table
     // http://localhost:9092/api/categories/1/item
     @PostMapping("/categories/{categoryId}/item")
-    public Item createCategoryRecipe(@PathVariable Long categoryId, @RequestBody Item itemObject){
-        System.out.println("calling createCategoryRecipe ==>");
+    public Item createCategoryItem(@PathVariable Long categoryId, @RequestBody Item itemObject){
+        System.out.println("calling createCategoryItem ==>");
        // return categoryService.createCategoryRecipe(categoryId, recipeObject);
         return categoryService.createCategoryItem(categoryId, itemObject);
     }
 
+    // http://localhost:9092/api/categories/1/item
+    //Get Items inside item table
+    @GetMapping("/categories/{categoryId}/item")
+    public List<Item> getCategoryItem(@PathVariable Long categoryId){
+        System.out.println("calling getCategoryItem ==>");
+        return null;
+    }
+
+
+//    // http://localhost:PORT-NUMBER/api/categories/1/recipes
+//    @GetMapping("/categories/{categoryId}/recipes")
+//    public List<Recipe> getCategoryRecipes(@PathVariable Long categoryId){
+//        System.out.println("calling getCategoryRecipes ==>");
+//        return categoryService.getCategoryRecipes(categoryId);
+//    }
 }

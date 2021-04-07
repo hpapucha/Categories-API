@@ -81,6 +81,7 @@ public class CategoryService {
         }
     }
 
+    //Create Items inside item table
     public Item createCategoryItem(Long categoryId, Item itemObject){
         System.out.println("service calling createCategoryItem ==>");
         try{
@@ -93,4 +94,18 @@ public class CategoryService {
             throw new InformationNotFoundException("category with id " + categoryId + " not found");
         }
     }
+
+    //Gets all the items in one category
+    public List<Item> getCategoryItem(Long categoryId) {
+        System.out.println("service calling getCategoryItem ==>");
+        Optional<Category> category = categoryRepository.findById(categoryId);
+        if (category.isPresent()) {
+            return category.get().getRecipeList();
+        } else {
+            throw new InformationNotFoundException("category with id " + categoryId + " not found");
+        }
+    }
+
+
+
 }

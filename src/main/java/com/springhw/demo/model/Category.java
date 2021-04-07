@@ -1,6 +1,7 @@
 package com.springhw.demo.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 //Entity means this is going to be a table
 @Entity
@@ -15,6 +16,10 @@ public class Category {
 
     private String name;
     private String description;
+
+    //Mapping to category private in item.java
+    @OneToMany(mappedBy = "category", orphanRemoval = true)
+    private List<Item> itemList;
 
     public Category(Long id, String name, String description) {
         this.id = id;
@@ -56,4 +61,8 @@ public class Category {
                 "name='" + name + '\'' + ", " +
                 "description='" + description + '\'' + '}';
     }
+
+    public List<Item> getRecipeList() { return itemList; }
+
+    public void setRecipeList(List<Item> recipeList) { this.itemList = recipeList; }
 }
