@@ -83,14 +83,22 @@ public class Controller {
     @GetMapping("/categories/{categoryId}/item")
     public List<Item> getCategoryItems(@PathVariable Long categoryId){
         System.out.println("calling getCategoryItem ==>");
-        return categoryService.getCategoryItem(categoryId);
+        return categoryService.getCategoryItems(categoryId);
     }
 
     //Get a single Item inside a single category
     @GetMapping("/categories/{categoryId}/items/{itemId}")
     public Item getSingleCategoryItem(@PathVariable Long categoryId, @PathVariable Long itemId){
         System.out.println("calling getCategoryItem ==>");
-        return categoryService.getCategoryRecipe(categoryId, itemId);
+        return categoryService.getCategoryItem(categoryId, itemId);
     }
 
+    //Update a single item inside a single category
+    @PutMapping("/categories/{categoryId}/items/{itemId}")
+    public Item updateCategoryItem(@PathVariable(value = "categoryId") Long categoryId, @PathVariable(value = "itemId") Long itemId, @RequestBody Item itemObject){
+        System.out.println("calling updateCategoryItem ==>");
+        return categoryService.updateCategoryItem(categoryId, itemId, itemObject);
+    }
+    
+//end
 }

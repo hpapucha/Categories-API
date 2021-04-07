@@ -96,7 +96,7 @@ public class CategoryService {
     }
 
     //Gets all the items in one category
-    public List<Item> getCategoryItem(Long categoryId) {
+    public List<Item> getCategoryItems(Long categoryId) {
         System.out.println("service calling getCategoryItem ==>");
         Optional<Category> category = categoryRepository.findById(categoryId);
         if (category.isPresent()) {
@@ -107,8 +107,8 @@ public class CategoryService {
     }
 
     //Get a single Item inside a single category
-    public Item getCategoryRecipe(Long categoryId, Long itemId) {
-        System.out.println("service calling getCategoryRecipe ==>");
+    public Item getCategoryItem(Long categoryId, Long itemId) {
+        System.out.println("service calling getCategoryItem ==>");
         Optional<Category> category = categoryRepository.findById(categoryId);
         if (category.isPresent()) {
             Optional<Item> item = itemRepository.findByCategoryId(categoryId).stream().filter(p -> p.getId().equals(itemId)).findFirst();
@@ -119,6 +119,20 @@ public class CategoryService {
             }
         } else {
             throw new InformationNotFoundException("category with id " + categoryId + " not found");
+        }
+    }
+
+
+    public Item updateCategoryItem(Long categoryId, Long itemId, Item itemObject) {
+        System.out.println("service calling updateCategoryItem ==>");
+        try {
+            Item itemOne = (itemRepository.findByCategoryId(categoryId).stream().filter(p -> p.getId().equals(itemId)).findFirst()).get();
+            itemOne.setName(itemObject.getName());
+            itemOne.setDescription(itemObject.getDescription());
+            itemOne.setDueDate(itemObject.getDueDate());
+            return itemRepository.save(itemOne);
+        } catch (NoSuchElementException e) {
+            throw new InformationNotFoundException("item or category not found");
         }
     }
 
