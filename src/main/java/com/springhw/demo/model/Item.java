@@ -65,7 +65,7 @@ public class Item {
     public void setDueDate(int dueDate) {
         this.dueDate = dueDate;
     }
-    
+
     @Override
     public String toString() {
         return "Item{" +

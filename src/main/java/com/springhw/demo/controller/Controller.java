@@ -2,6 +2,7 @@ package com.springhw.demo.controller;
 import com.springhw.demo.exception.InformationExistException;
 import com.springhw.demo.exception.InformationNotFoundException;
 import com.springhw.demo.model.Category;
+import com.springhw.demo.model.Item;
 import com.springhw.demo.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -89,6 +90,14 @@ public class Controller {
             throw new InformationNotFoundException("category with id " + categoryId + " not found");
         }
 
+    }
+
+    // http://localhost:PORT-NUMBER/api/categories/1/recipes
+    @PostMapping("/categories/{categoryId}/recipes")
+    public Item createCategoryRecipe(@PathVariable Long categoryId, @RequestBody Item recipeObject){
+        System.out.println("calling createCategoryRecipe ==>");
+       // return categoryService.createCategoryRecipe(categoryId, recipeObject);
+        return null;
     }
 
 }
