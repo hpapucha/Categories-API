@@ -3,12 +3,14 @@ package com.springhw.demo.service;
 import com.springhw.demo.exception.InformationExistException;
 import com.springhw.demo.exception.InformationNotFoundException;
 import com.springhw.demo.model.Category;
+import com.springhw.demo.model.Item;
 import com.springhw.demo.repository.CategoryRepository;
 import com.springhw.demo.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -75,6 +77,19 @@ public class CategoryService {
             categoryRepository.deleteById(categoryId);
             return category;
         } else {
+            throw new InformationNotFoundException("category with id " + categoryId + " not found");
+        }
+    }
+
+    public Item createCategoryItem(Long categoryId, Item itemObject){
+        System.out.println("service calling createCategoryItem ==>");
+        try{
+            Optional category = categoryRepository.findById(categoryId);
+            //we are setting the category for the recipe and casting the datatype
+            //to be the Category type
+            itemObject.setCategory((Category) category.get());
+            return itemRepository.save(itemObject);
+        } catch(NoSuchElementException e) {
             throw new InformationNotFoundException("category with id " + categoryId + " not found");
         }
     }

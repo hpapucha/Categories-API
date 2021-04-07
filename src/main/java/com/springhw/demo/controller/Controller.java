@@ -70,12 +70,12 @@ public class Controller {
     }
 
     //ITEM
-    // http://localhost:PORT-NUMBER/api/categories/1/item
-    @PostMapping("/categories/{categoryId}/recipes")
-    public Item createCategoryRecipe(@PathVariable Long categoryId, @RequestBody Item recipeObject){
+    // http://localhost:9092/api/categories/1/item
+    @PostMapping("/categories/{categoryId}/item")
+    public Item createCategoryRecipe(@PathVariable Long categoryId, @RequestBody Item itemObject){
         System.out.println("calling createCategoryRecipe ==>");
        // return categoryService.createCategoryRecipe(categoryId, recipeObject);
-        return null;
+        return categoryService.createCategoryItem(categoryId, itemObject);
     }
 
 }
