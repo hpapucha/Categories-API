@@ -33,7 +33,7 @@ public class Controller {
     }
 
     //When the user visits http:/localhost/9092/hello
-    @GetMapping("/hello")
+    @GetMapping("/api/helloworld")
     public String helloWorld() {
         return "Hello world";
     }
