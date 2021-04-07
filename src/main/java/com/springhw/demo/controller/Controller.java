@@ -4,6 +4,7 @@ import com.springhw.demo.exception.InformationNotFoundException;
 import com.springhw.demo.model.Category;
 import com.springhw.demo.model.Item;
 import com.springhw.demo.repository.CategoryRepository;
+import com.springhw.demo.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -13,24 +14,31 @@ import java.util.Optional;
 @RequestMapping(path = "/api")
 public class Controller {
 
+    private CategoryService categoryService;
     private CategoryRepository categoryRepository;
+
     //dependency injection use interface without getters/setters
     @Autowired
     public void setCategoryRepository(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
 
+    @Autowired
+    public void setCategoryService(CategoryService categoryService) {
+        this.categoryService = categoryService;
+    }
+
     //When the user visits http:/localhost/9092/hello
     @GetMapping("/hello")
-    public String helloWorld(){
+    public String helloWorld() {
         return "Hello world";
     }
 
     // http://localhost:9092/api/categories
     @GetMapping("/categories")
-    public List<Category> getCategories(){
+    public List<Category> getCategories() {
         System.out.println("calling getCategories ==>");
-        return categoryRepository.findAll();
+        return categoryService.getCategories();
     }
 
     // http://localhost:9092/api/categories/1
@@ -38,61 +46,31 @@ public class Controller {
     @GetMapping(path = "/categories/{categoryId}")
     public Optional getCategory(@PathVariable Long categoryId) {
         System.out.println("calling getCategory ==>");
-        Optional category = categoryRepository.findById(categoryId);
-        if(category.isPresent()){
-            return category;
-        }
-        else {
-            throw new InformationNotFoundException("category with id " + categoryId + " not found");
-        }
+        return categoryService.getCategory(categoryId);
     }
 
     // http://localhost:PORT-NUMBER/api/categories/
     @PostMapping(path = "/categories")
-    public Category createCategory(@RequestBody Category categoryObject){
+    public Category createCategory(@RequestBody Category categoryObject) {
         System.out.println("calling createCategory ==>");
-        Category category = categoryRepository.findByName(categoryObject.getName());
-        if(category !=null) {
-            throw new InformationExistException("category with name " + category.getName() + " already exists");
-        }else {
-            return categoryRepository.save(categoryObject);
-        }
+        return categoryService.createCategory(categoryObject);
     }
 
     // http://localhost:PORT-NUMBER/api/categories/1
     @PutMapping(path = "/categories/{categoryId}")
     public Category updateCategory(@PathVariable Long categoryId, @RequestBody Category categoryObject) {
         System.out.println("calling updateCategory ==>");
-        Optional<Category> category = categoryRepository.findById(categoryId);
-        if (category.isPresent()) {
-            if (categoryObject.getName().equals(category.get().getName())) {
-                throw new InformationExistException("category with name " + category.get().getName() + " already exists");
-            } else {
-                Category updateCategory = categoryRepository.findById(categoryId).get();
-                updateCategory.setName(categoryObject.getName());
-                updateCategory.setDescription(categoryObject.getDescription());
-                return categoryRepository.save(updateCategory);
-            }
-        } else {
-            throw new InformationNotFoundException("category with id " + categoryId + " not found");
-        }
+        return categoryService.updateCategory(categoryId, categoryObject);
     }
 
-    // http://localhost:PORT-NUMBER/api/categories/1
-    @DeleteMapping(path = "/categories/{categoryId}")
+    @DeleteMapping("/categories/{categoryId}")
     public Optional<Category> deleteCategory(@PathVariable(value = "categoryId") Long categoryId) {
         System.out.println("calling deleteCategory ==>");
-        Optional<Category> category = categoryRepository.findById(categoryId);
-        if (category.isPresent()) {
-            categoryRepository.deleteById(categoryId);
-            return category;
-        } else {
-            throw new InformationNotFoundException("category with id " + categoryId + " not found");
-        }
-
+        return categoryService.deleteCategory(categoryId);
     }
 
-    // http://localhost:PORT-NUMBER/api/categories/1/recipes
+    //ITEM
+    // http://localhost:PORT-NUMBER/api/categories/1/item
     @PostMapping("/categories/{categoryId}/recipes")
     public Item createCategoryRecipe(@PathVariable Long categoryId, @RequestBody Item recipeObject){
         System.out.println("calling createCategoryRecipe ==>");
