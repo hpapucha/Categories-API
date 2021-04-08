@@ -1,6 +1,7 @@
 package com.springhw.demo.controller;
 
 
+import com.springhw.demo.model.Request.LoginRequest;
 import com.springhw.demo.model.User;
 import com.springhw.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,13 @@ public class UserController {
         HashMap responseMessage = new HashMap();
         responseMessage.put("status", "user with username: " + userObject.getUsername() + " was successfully created");
         return new ResponseEntity<HashMap>(responseMessage, HttpStatus.OK);
+    }
+
+    //Login method for the user which will authenticate
+    //http://localhost/9092/auth/users/login
+    @PostMapping("/login")
+    public ResponseEntity<Object> loginUser(@RequestBody LoginRequest loginRequest){
+        System.out.println("calling loginUser ==>");
+        return userService.loginUser(loginRequest);
     }
 }
