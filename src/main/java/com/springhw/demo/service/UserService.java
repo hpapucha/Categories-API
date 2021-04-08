@@ -1,5 +1,6 @@
 package com.springhw.demo.service;
 import com.springhw.demo.exception.InformationExistException;
+import com.springhw.demo.exception.InformationNotFoundException;
 import com.springhw.demo.model.Request.LoginRequest;
 import com.springhw.demo.model.Response.LoginResponse;
 import com.springhw.demo.model.User;
@@ -52,10 +53,14 @@ public class UserService {
     //User login business logic
     public ResponseEntity<Object> loginUser(LoginRequest loginRequest){
         System.out.println("service calling loginUser ==>");
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
-        final UserDetails userDetails = userDetailsService.loadUserByUsername((loginRequest.getEmail()));
-        final String JWT = jwtUtils.generateToken(userDetails);
-        return ResponseEntity.ok(new LoginResponse(JWT));
+        try{
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
+            final UserDetails userDetails = userDetailsService.loadUserByUsername((loginRequest.getEmail()));
+            final String JWT = jwtUtils.generateToken(userDetails);
+            return ResponseEntity.ok(new LoginResponse(JWT));
+        }catch(NullPointerException e){
+            throw new InformationNotFoundException("user with that email address " + loginRequest.getEmail() + " not found");
+        }
     }
 
     public User findUserByEmailAddress(String email){
