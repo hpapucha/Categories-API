@@ -1,6 +1,4 @@
 package com.springhw.demo.controller;
-import com.springhw.demo.exception.InformationExistException;
-import com.springhw.demo.exception.InformationNotFoundException;
 import com.springhw.demo.model.Category;
 import com.springhw.demo.model.Item;
 import com.springhw.demo.repository.CategoryRepository;
@@ -32,11 +30,11 @@ public class Controller {
         this.categoryService = categoryService;
     }
 
-    //When the user visits http:/localhost/9092/hello
-    @GetMapping("/api/helloworld")
-    public String helloWorld() {
-        return "Hello world";
-    }
+//    //When the user visits http:/localhost/9092/hello
+//    @GetMapping("/api/hello")
+//    public String helloWorld() {
+//        return "Hello world";
+//    }
 
     // http://localhost:9092/api/categories
     @GetMapping("/categories")

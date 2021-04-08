@@ -1,5 +1,4 @@
 package com.springhw.demo.service;
-
 import com.springhw.demo.exception.InformationExistException;
 import com.springhw.demo.model.User;
 import com.springhw.demo.repository.UserRepository;
@@ -28,7 +27,6 @@ public class UserService {
                     " already exists");
         }
     }
-
     public User findUserByEmailAddress(String email){
         return userRepository.findByEmailAddress(email);
     }

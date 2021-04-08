@@ -6,23 +6,25 @@ import com.springhw.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/auth/users")
 public class UserController {
     private UserService userService;
 
+    //When the user visits http:/localhost/9092/hello
+    @GetMapping("/hello")
+    public String helloWorld() {
+        return "Hello world";
+    }
 
     @Autowired
     public void setUserService(UserService userService){
         this.userService = userService;
     }
 
-    //http://localhost/9092//auth/users
+    //http://localhost/9092/auth/users
     @PostMapping("/register")
     public User createUser(@RequestBody User userObject){
         System.out.println("calling createUser ==>");

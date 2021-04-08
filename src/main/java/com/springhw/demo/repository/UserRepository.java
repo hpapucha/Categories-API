@@ -5,7 +5,7 @@ import com.springhw.demo.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {
+    //custom methods
     boolean existsByEmailAddress(String userEmailAddress);
-
     User findByEmailAddress(String userEmailAddress);
 }
