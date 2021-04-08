@@ -1,5 +1,9 @@
 package com.springhw.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -19,7 +23,14 @@ public class Category {
 
     //Mapping to category private in item.java
     @OneToMany(mappedBy = "category", orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Item> itemList;
+
+    //Many categories can belong to a one user
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    private User user;
 
     public Category(Long id, String name, String description) {
         this.id = id;
@@ -65,4 +76,12 @@ public class Category {
     public List<Item> getItemList() { return itemList; }
 
     public void setItemList(List<Item> itemList) { this.itemList = itemList; }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

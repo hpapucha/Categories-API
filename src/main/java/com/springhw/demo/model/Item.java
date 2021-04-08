@@ -21,7 +21,14 @@ public class Item {
 
     @JsonIgnore
     @ManyToOne
+    @JoinColumn(name = "category_id")
     private Category category;
+
+    //Item belongs to one user
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    private User user;
 
     public Item() {
     }

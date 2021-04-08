@@ -29,7 +29,7 @@ public class User {
     @JoinColumn(name = "profile_id", referencedColumnName = "id")
     private UserProfile userProfile;
 
-    //user can have more than one item
+    //user can have more than one recipe
     @OneToMany(mappedBy = "user")
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Item> itemList;
@@ -38,6 +38,7 @@ public class User {
     @OneToMany(mappedBy = "user")
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Category> categoryList;
+
 
     public User() {
     }

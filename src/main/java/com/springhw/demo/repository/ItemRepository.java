@@ -11,9 +11,5 @@ public interface ItemRepository extends JpaRepository<Item, Long>{
     List<Item> findByCategoryId(Long categoryId);
 }
 
-//@Repository
-//public interface RecipeRepository extends JpaRepository<Recipe, Long> {
-//    List<Recipe> findByCategoryId(Long categoryId);
-//}
-//
+
 
