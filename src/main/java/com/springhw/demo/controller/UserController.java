@@ -4,16 +4,20 @@ package com.springhw.demo.controller;
 import com.springhw.demo.model.User;
 import com.springhw.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 
 @RestController
 @RequestMapping(path = "/auth/users")
 public class UserController {
     private UserService userService;
 
-    //When the user visits http:/localhost/9092/hello
+    //When the user visits http:/localhost/9092/hello. Testing Get with HelloWorld
     @GetMapping("/hello")
     public String helloWorld() {
         return "Hello world";
@@ -24,10 +28,14 @@ public class UserController {
         this.userService = userService;
     }
 
-    //http://localhost/9092/auth/users
+
+    //ResponseEntity with custom message for creating new user
     @PostMapping("/register")
-    public User createUser(@RequestBody User userObject){
+    public ResponseEntity<HashMap> createUser(@RequestBody User userObject){
         System.out.println("calling createUser ==>");
-        return userService.createUser(userObject);
+        userService.createUser(userObject);
+        HashMap responseMessage = new HashMap();
+        responseMessage.put("status", "user with username: " + userObject.getUsername() + " was successfully created");
+        return new ResponseEntity<HashMap>(responseMessage, HttpStatus.OK);
     }
 }
