@@ -46,7 +46,7 @@ public class Controller {
     // http://localhost:9092/api/categories/1
     //Checking with custom error message
     @GetMapping(path = "/categories/{categoryId}")
-    public Optional getCategory(@PathVariable Long categoryId) {
+    public Category getCategory(@PathVariable Long categoryId) {
         System.out.println("calling getCategory ==>");
         return categoryService.getCategory(categoryId);
     }

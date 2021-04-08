@@ -6,7 +6,9 @@ import com.springhw.demo.model.Category;
 import com.springhw.demo.model.Item;
 import com.springhw.demo.repository.CategoryRepository;
 import com.springhw.demo.repository.ItemRepository;
+import com.springhw.demo.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,23 +34,25 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
-    //@Pathvariable only applies to the url
-    public Optional getCategory(Long categoryId) {
-        System.out.println("service calling getCategory ==>");
-        Optional category = categoryRepository.findById(categoryId);
-        if (category.isPresent()) {
-            return category;
-        } else {
+    public Category getCategory(Long categoryId) {
+        System.out.println("service getCategory ==>");
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Category category = categoryRepository.findByIdAndUserId(categoryId, userDetails.getUser().getId());
+        if (category == null) {
             throw new InformationNotFoundException("category with id " + categoryId + " not found");
+        } else {
+            return category;
         }
     }
 
     public Category createCategory(Category categoryObject) {
         System.out.println("service calling createCategory ==>");
-        Category category = categoryRepository.findByName(categoryObject.getName());
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Category category = categoryRepository.findByUserIdAndName(userDetails.getUser().getId(), categoryObject.getName());
         if (category != null) {
             throw new InformationExistException("category with name " + category.getName() + " already exists");
         } else {
+            categoryObject.setUser(userDetails.getUser());
             return categoryRepository.save(categoryObject);
         }
     }
