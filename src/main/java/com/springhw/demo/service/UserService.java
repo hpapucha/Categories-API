@@ -21,10 +21,8 @@ public class UserService {
 
     @Autowired
     private UserDetailsService userDetailsService;
-
     @Autowired
     private JWTUtils jwtUtils;
-
     @Autowired
     private AuthenticationManager authenticationManager;
     @Autowired

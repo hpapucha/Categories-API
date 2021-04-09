@@ -30,12 +30,6 @@ public class Controller {
         this.categoryService = categoryService;
     }
 
-//    //When the user visits http:/localhost/9092/hello
-//    @GetMapping("/api/hello")
-//    public String helloWorld() {
-//        return "Hello world";
-//    }
-
     // http://localhost:9092/api/categories
     @GetMapping("/categories")
     public List<Category> getCategories() {
