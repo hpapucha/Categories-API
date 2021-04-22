@@ -116,7 +116,7 @@ public class CategoryService {
         Optional<Category> category = categoryRepository.findById(categoryId);
         if (category.isPresent()) {
             Optional<Item> item = itemRepository.findByCategoryId(categoryId).stream().filter(p -> p.getId().equals(itemId)).findFirst();
-            if (item.isEmpty()) {
+            if (!item.isPresent()) {
                 throw new InformationNotFoundException("item with id " + itemId + " not found");
             } else {
                 return item.get();
