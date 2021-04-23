@@ -38,7 +38,7 @@ GET /api/categories/{categoryId}/items | List all item in the given category | P
 PUT /api/categories/{categoryId}/items/{itemId}| Updates a item in the given category | PRIVATE
 DELETE /api/categories/{categoryId}/items/{itemId} | Deletes a item in the given category | PRIVATE
 
-###Installation
+### Installation
 
 - Fork and clone the repository.
 - Use Postgres or any other DB manager to create a database called “bookstore”
